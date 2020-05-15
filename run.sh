@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-set -eu
+set -e
 
 echo "Installing dotnet-sonarscanner...."
 sh -c "dotnet tool install --global dotnet-sonarscanner --version 4.8.0"
