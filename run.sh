@@ -14,18 +14,18 @@ begin_cmd="/dotnet-sonarscanner begin \\
     /version:\"${GITHUB_RUN_NUMBER}\" \\
     /d:sonar.login=\"${SONAR_TOKEN:?Please set the SONAR_TOKEN environment variable.}\""
 
-if [ -n "${OPENCOVER_REPORT_PATH}" ]
+if [ -z "${OPENCOVER_REPORT_PATH}" ]
 then
     # sh -c "sed -i 's/\/home\/runner\/work\/${GITHUB_REPOSITORY##*/}\/${GITHUB_REPOSITORY##*/}\//\/github\/workspace\//g' ${OPENCOVER_REPORT_PATH}"
     begin_cmd="$begin_cmd /d:sonar.cs.opencover.reportsPaths=\"${OPENCOVER_REPORT_PATH}\""
 fi
 
-if [ -n "${CPD_EXCLUSIONS}" ]
+if [ -z "${CPD_EXCLUSIONS}" ]
 then
     begin_cmd="$begin_cmd /d:sonar.cpd.exclusions=\"${CPD_EXCLUSIONS}\""
 fi
 
-if [ -n "${PR_KEY}" ]
+if [ -z "${PR_KEY}" ]
 then
     begin_cmd="$begin_cmd /d:sonar.pullrequest.github.repository=\"${GITHUB_REPOSITORY}\" \\
     /d:sonar.pullrequest.github.branch=\"${GITHUB_REF#refs/heads/}\" \\
