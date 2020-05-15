@@ -6,7 +6,7 @@ echo "Installing dotnet-sonarscanner...."
 sh -c "dotnet tool install --global dotnet-sonarscanner --version 4.8.0"
 
 
-begin_cmd="/dotnet-sonarscanner begin \\
+begin_cmd="dotnet-sonarscanner begin \\
     /k:\"${PROJECT_KEY}\" \\
     /n:\"${PROJECT_NAME}\" \\
     /o:\"${ORGANIZATION}\" \\
@@ -34,4 +34,4 @@ fi
 
 sh -c "$begin_cmd"
 sh -c "dotnet build -c Release ${SOLUTION_PATH}"
-sh -c "/dotnet-sonarscanner end /d:sonar.login=\"${SONAR_TOKEN}\""
+sh -c "dotnet-sonarscanner end /d:sonar.login=\"${SONAR_TOKEN}\""
