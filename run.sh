@@ -33,5 +33,6 @@ then
 fi
 
 sh -c "$begin_cmd"
-sh -c "dotnet build -c Release ${SOLUTION_PATH}"
+sh -c "dotnet restore --locked-mode ${SOLUTION_PATH}"
+sh -c "dotnet build --no-restore -c Release ${SOLUTION_PATH}"
 sh -c "dotnet-sonarscanner end /d:sonar.login=\"${SONAR_TOKEN}\""
